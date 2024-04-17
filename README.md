@@ -1,1 +1,1 @@
-# See mern.txt
+# See mern.txt for notes
