@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express();
 
-//routes create
-//app.get('route path' , requestHandler(){})
+
+
+//session= cookie
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 
 
 //middleware - if we want to do something after getting the request then go to route
@@ -16,6 +20,8 @@ app.use(function (req, res, next) {
     next()
 })
 
+//routes create
+//app.get('route path' , requestHandler(){})
 app.get("/", function (req, res) {
     res.send('Champion meeeee')
 })
@@ -27,7 +33,6 @@ app.get("/profile", function (req, res) {
 app.get('/about', (req, res, next) => {
     return next(new Error('not implemented yet'))
 })
-
 //we must include next in the routes where we want to handle the error
 
 

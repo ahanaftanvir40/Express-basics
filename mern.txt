@@ -40,3 +40,15 @@ app.use((err , req , res , next)=>{
     console.log(err.stack)
     res.status(500).send('something broke') // this msg whill show at the frontend
 })
+------------------------------------------------------------------------------------
+#Session Cookie
+
+app.use(express.json()) //to handle data from framework
+
+app.use(epxress.urlencoded({extennded : true})) //to handle only forms 
+
+
+//we get blobs from our browser so to make the data readable we use above two lines
+
+------------------------------------------------------------------------------------
+

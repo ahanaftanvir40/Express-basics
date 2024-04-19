@@ -1,0 +1,35 @@
+setting up parser for form
+
+setting up ejs for ejs pages
+    install ejs from npm
+//in ejs we can basically perform calculation or other things in html like jsx
+    setup ejs as a view engine
+    app.set('view engine' , 'ejs')
+    
+// then instead of res.send we use res.render('ejs file name that we created in viewss')
+
+//so it will now go to views folder and look for index file name if it is found 
+    then it will show us the pages
+
+//to calculate something is ejs: <%= 2+2 %>
+
+
+
+-----------
+#dynamic route
+
+/profile/ahanaf
+/profile/hasim
+
+here the name is dynamic. so we need to use : before that dynamic part
+// : means it is dynamic. that is a variable now
+
+/profile/:name 
+
+
+now to get its value
+
+we use req.params.name (here 'name' can be anything that we wrote after the : in the route)
+
+
+
