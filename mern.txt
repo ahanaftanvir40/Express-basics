@@ -51,4 +51,4 @@ app.use(epxress.urlencoded({extennded : true})) //to handle only forms
 //we get blobs from our browser so to make the data readable we use above two lines
 
 ------------------------------------------------------------------------------------
-
+tips: we must give input fields a name to retrieve values
