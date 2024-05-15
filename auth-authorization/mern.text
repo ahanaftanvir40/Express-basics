@@ -1,0 +1,46 @@
+// learning cookie session bcrypt jsonwebtoken/jwt
+
+pass : thisispassword
+hashed pass : $2b$10$vzEbB1bavVdfGkO1AHrbjew/dG/s3p3IM3QsTkTVwdo.YH0ONPWwS
+
+
+const express = require('express')
+const app = express()
+const cookieParser = require('cookie-parser')
+const bcrypt = require('bcrypt')
+
+app.use(cookieParser()) // to read the cookie
+
+app.get('/', (req, res) => {
+
+    res.cookie("name", "tanvir") // to set cookie we use res
+    res.send('hello')
+
+})
+
+
+app.get('/read', (req, res) => {
+    console.log(req.cookies); //to read the cookie we use req
+    res.send('read')
+})
+
+
+app.get('/encryption', (req, res) => {
+    bcrypt.genSalt(10, function (err, salt) { //we usually set saltRounds to 10 
+        //salt is random generated string
+        bcrypt.hash('thisispassword', salt, function (err, hash) { //hashing the pass
+            console.log(hash);
+        });
+    });
+})
+
+app.get('/checkhash', (req, res) => {
+    bcrypt.compare('thisispassword', '$2b$10$vzEbB1bavVdfGkO1AHrbjew/dG/s3p3IM3QsTkTVwdo.YH0ONPWwS', function (err, result) {
+        console.log(result); //logs true
+    });
+
+})
+
+app.listen(3000, () => {
+    console.log('server up');
+})
