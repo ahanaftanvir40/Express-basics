@@ -1,0 +1,41 @@
+Multer
+--------
+//a npm package to upload things
+
+// we must include enctype="multipart/form-data" in our html form
+
+//it gives us req.body where it gives us the other input fields and a req.file where our file info gets stored 
+
+
+
+const crypto = require('crypto')
+const multer = require('multer')
+const path = require('path)
+
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/images/uploads')
+    },
+    filename: function (req, file, cb) {
+        crypto.randomBytes(12, (err, bytes) => { //generating random file name
+
+            const fn = bytes.toString('hex') + path.extname(file.originalname) //converting bytes to hex decimal and then adding the extension of the file at the end with path.extname(file.originalname)
+            cb(null, fn) // lets think for cb func our filename will get set
+        })
+
+    }
+})
+
+const upload = multer({ storage: storage })
+
+
+
+app.get('/multer', (req, res) => {
+    res.render('test')
+})
+
+app.post('/upload', upload.single('image'), (req, res) => { //here 'image' is the name of the field in html
+    console.log(req.file);
+})
